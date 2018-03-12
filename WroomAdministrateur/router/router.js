@@ -31,6 +31,7 @@ module.exports = function(app){
     app.get('/detailEcurie/:numEcurie', EcurieController.DetailEcurie);
 
  //Résultats
+    app.get('/menuResultats', ResultatController.ListerGrandPrix);
    //app.get('/resultats', ResultatController.ListerResultat);
     
 

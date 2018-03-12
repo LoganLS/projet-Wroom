@@ -1,5 +1,5 @@
 $(function () {
-    $("a").mouseover(function(){
+    $(".bulle").mouseover(function(){
         if($(this).attr('title')=="")  return false;
 
         $('body').append("<span class='infobulle'></span>");
@@ -20,7 +20,7 @@ $(function () {
         });
     });
 
-    $("a").mouseout(function(){
+    $(".bulle").mouseout(function(){
         var bulle =  $(".infobulle");
         $(this).attr('title','???');
         //??? : ancienne valeur de title -> Comment la garder / récupérer ?
