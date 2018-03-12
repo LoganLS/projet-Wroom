@@ -154,7 +154,7 @@ module.exports.pageModifierPilote = function(request, response){
     var num=request.params.numPilote;
     async.parallel([
         function(callback){
-            model.getInformationsOfOnePilote(num,function(err,result){
+            model.getInformationsPilote(num,function(err,result){
                callback(null,result);
             });
         }, //fin callback0
@@ -211,17 +211,15 @@ module.exports.ajouterPilote = function(request, response){
     response.css="admin";
     
     var post={
-        prenom:req.body.prenom,
-        nom:req.body.nom,
-        jour:req.body.jour,
-        mois:req.bpdy.mois,
-        annee:req.body.annee,
-        nationalite:req.body.nationalite,
-        ecurie:req.body.ecurie,
-        points:req.body.points,
-        poids:req.body.poids,
-        taille:req.body.taille,
-        description:req.body.description
+        prenom:request.body.prenom,
+        nom:request.body.nom,
+        datenaissance:request.body.annee+"-"+request.body.mois+"-"+request.body.jour,
+        nationalite:request.body.nationalite,
+        ecurie:request.body.ecurie,
+        points:request.body.points,
+        poids:request.body.poids,
+        taille:request.body.taille,
+        description:request.body.description
     }
     
     console.log(post);
@@ -231,8 +229,38 @@ module.exports.ajouterPilote = function(request, response){
             console.log(err);
             return;
         }
-        response.ajouterPilote=result;	
+        response.ajoutPilote=result[0];	
         console.log(result);
         response.render('ajout',response);
+	});
+ }
+
+module.exports.modifierPilote = function(request, response){
+	response.title = 'Pilote modifié';
+    response.css="admin";
+    var num=request.params.numPilote;
+    
+    var post={
+        prenom:request.body.prenom,
+        nom:request.body.nom,
+        datenaissance:request.body.annee+"-"+request.body.mois+"-"+request.body.jour,
+        nationalite:request.body.nationalite,
+        ecurie:request.body.ecurie,
+        points:request.body.points,
+        poids:request.body.poids,
+        taille:request.body.taille,
+        description:request.body.description
+    }
+    
+    console.log(post);
+    
+    model.modifierPilote(num,post,function(err,result){
+		if(err){
+            console.log(err);
+            return;
+        }
+        response.modifPilote=result[0];	
+        console.log(result);
+        response.render('modif',response);
 	});
  }

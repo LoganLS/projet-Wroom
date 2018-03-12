@@ -13,15 +13,18 @@ module.exports = function(app){
 // pilotes
     app.get('/menuPilotes',PiloteController.menuPilote);
     app.get('/menuPilotes/ajouterPilote',PiloteController.pageAjouterPilote);
-    app.get('/menuPilotes/ajouterPilote/ajout',PiloteController.pageAjouterPilote);
+    app.post('/menuPilotes/ajouterPilote/ajout',PiloteController.ajouterPilote);
     app.get('/menuPilotes/modifierPilote/:numPilote',PiloteController.pageModifierPilote);
+    app.post('/menuPilotes/modifierPilote/:numPilote/modifier',PiloteController.modifierPilote);
     app.get('/menuPilotes/supprimerPilote/:numPilote',PiloteController.pageSupprimerPilote);
 
  // circuits
     app.get('/menuCircuits',CircuitController.menuCircuit);
     app.get('/menuCircuits/ajouterCircuit',CircuitController.pageAjouterCircuit);
+    app.post('/menuCircuits/ajouterCircuit/ajout',CircuitController.ajouterCircuit);
     app.get('/menuCircuits/modifierCircuit/:numCircuit',CircuitController.pageModifierCircuit);
-    //app.get('/menuCircuits/supprimerCircuit/:numCircuit',CircuitController.pageSupprimerCircuit);
+    app.post('/menuCircuits/modifierCircuit/:numCircuit/modifier',CircuitController.modifierCircuit);
+    app.get('/menuCircuits/supprimerCircuit/:numCircuit',CircuitController.pageSupprimerCircuit);
 
 // Ecuries
    //app.get('/ecuries', EcurieController.ListerEcurie);

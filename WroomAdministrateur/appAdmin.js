@@ -6,7 +6,7 @@ let express         = require('express'),
     path = require('path');
 let app = express();
 app.use(bodyParser.urlencoded({extended: true}));
-app.set('port', 6800);
+app.set('port', 6900);
 app.set('views', path.join(__dirname, 'views'));
 // routes static, le routeur n'y aura pas accès
 app.use(express.static(path.join(__dirname+ '/public')));

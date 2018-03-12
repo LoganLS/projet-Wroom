@@ -73,7 +73,7 @@ module.exports.menuCircuit = function(request, response){
 module.exports.pageAjouterCircuit = function(request, response){
     response.title = 'Ajouter un circuit';    
     response.css="admin";
-	model.getPays(function(err,result){
+	model.getAllPays(function(err,result){
 		if (err) {
             // gestion de l'erreur
             console.log(err);
@@ -114,3 +114,72 @@ module.exports.pageModifierCircuit = function(request, response){
         }
     );//fin async
 }
+
+module.exports.pageSupprimerCircuit = function(request, response){
+    response.title = 'Supprimer un circuit';  
+    var num=request.params.numCircuit;
+    response.css="admin";
+	model.supprimerCircuit(num,function(err,result){
+		if (err) {
+            // gestion de l'erreur
+            console.log(err);
+            return;
+        }
+        response.suppression = result;	
+        console.log(result);
+        response.render('supprimer', response);
+	});
+}
+
+module.exports.ajouterCircuit = function(request, response){
+	response.title = 'Circuit ajouté';
+    response.css="admin";
+    
+    var post={
+        nom:request.body.nom,
+        longueur:request.body.longueur,
+        pays:request.body.pays,
+        adresseImage:request.body.adresseImage,
+        spectateur:request.body.spectateur,
+        description:request.body.description
+    }
+    
+    console.log(post);
+    
+    model.ajouterCircuit(post,function(err,result){
+		if(err){
+            console.log(err);
+            return;
+        }
+        response.ajoutCircuit=result[0];	
+        console.log(result);
+        response.render('ajout',response);
+	});
+ }
+
+module.exports.modifierCircuit = function(request, response){
+	response.title = 'Circuit modifié';
+    response.css="admin";
+    var num=request.params.numCircuit;
+    
+    var post={
+        nom:request.body.nom,
+        longueur:request.body.longueur,
+        pays:request.body.pays,
+        adresseImage:request.body.adresseImage,
+        spectateur:request.body.spectateur,
+        description:request.body.description
+    }
+    
+    console.log(post);
+    
+    model.modifierCircuit(num,post,function(err,result){
+		if(err){
+            console.log(err);
+            return;
+        }
+        response.modifCircuit=result[0];	
+        console.log(result);
+        response.render('modif',response);
+	});
+ }

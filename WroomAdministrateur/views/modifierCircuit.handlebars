@@ -1,5 +1,5 @@
 <center><h1>Modifier un circuit</h1></center>
-<form method="get">
+<form action="/menuCircuits/modifierCircuit/{{infosCircuit.cirnum}}/modifier" method="post">
     <table> 
         <tr><td>Nom</td><td><input type="text" name="nom" value="{{infosCircuit.cirnom}}" required/></td></tr>
         <tr><td>Longueur</td><td><input type="text" name="longueur" value="{{infosCircuit.cirlongueur}}" required/> m</td></tr>
@@ -14,17 +14,17 @@
         </tr>
         <tr><td>Image</td>
             <td>
-                <input type="file" value="C:/wamp64/www/Wroom/public/image/circuit/{{infosCircuit.ciradresseimage}}" required/>{{infosCircuit.ciradresseimage}}
+                <input type="file" name="adresseImage" value="C:/wamp64/www/Wroom/public/image/circuit/{{infosCircuit.ciradresseimage}}" required/>{{infosCircuit.ciradresseimage}}
             </td>
         </tr>
         <tr><td>Nombre de spectateurs</td>
             <td>
-                <input type="text" value="{{infosCircuit.cirnbspectateurs}}" required/> personnes
+                <input type="text" name="spectateur" value="{{infosCircuit.cirnbspectateurs}}" required/> personnes
             </td>
         </tr>
         <tr><td>Description</td><td><textarea name="description" cols="75" rows="5" required>{{infosCircuit.cirtext}}</textarea></td></tr>
     </table>
     
     <br/><br/>
-    <input type="submit" name="ajouter" value="Ajouter" id="bouton"/>
+    <input type="submit" name="modifier" value="Modifier" id="bouton"/>
 </form>
