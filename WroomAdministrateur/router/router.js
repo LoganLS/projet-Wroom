@@ -27,7 +27,8 @@ module.exports = function(app){
     app.get('/menuCircuits/supprimerCircuit/:numCircuit',CircuitController.pageSupprimerCircuit);
 
 // Ecuries
-   //app.get('/ecuries', EcurieController.ListerEcurie);
+    app.get('/menuEcuries', EcurieController.ListerEcurie);
+    app.get('/detailEcurie/:numEcurie', EcurieController.DetailEcurie);
 
  //Résultats
    //app.get('/resultats', ResultatController.ListerResultat);
